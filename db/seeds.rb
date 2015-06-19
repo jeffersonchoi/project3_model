@@ -20,6 +20,16 @@ Bus.create([
   {name: "Bus 4"}
   ])
 
+Stop.create([
+  {name: "Stop 1"},
+  {name: "Stop 2"},
+  {name: "Stop 3"},
+  {name: "Stop 4"},
+  {name: "Stop 5"},
+  {name: "Stop 6"},
+  {name: "Stop 7"},
+  {name: "Stop 8"}
+  ])
 
 Bus.all.each do |bus|
 
@@ -28,5 +38,17 @@ Bus.all.each do |bus|
 
   end
 
+
+end
+
+
+Route.all.each do |route|
+
+  Stop.all.sample(6).each do |stop|
+
+    RouteStop.create(route_id: route.id, stop_id: stop.id)
+
+
+  end
 
 end
