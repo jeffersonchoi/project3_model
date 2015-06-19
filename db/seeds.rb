@@ -41,13 +41,21 @@ Bus.all.each do |bus|
 
 end
 
-
 Route.all.each do |route|
 
   Stop.all.sample(6).each do |stop|
 
     RouteStop.create(route_id: route.id, stop_id: stop.id)
 
+  end
+
+end
+
+Bus.all.each do |bus|
+
+  RouteStop.all.each do |routestop|
+
+    StopTime.create(bus_id: bus.id, route_stop_id: routestop.id)
 
   end
 
