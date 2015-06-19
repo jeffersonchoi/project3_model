@@ -7,29 +7,61 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Route.create([
-  {name: "Route 1"},
-  {name: "Route 2"},
-  {name: "Route 3"},
-  {name: "Route 4"}
+  {name: "Route 704"},
   ])
 
-Bus.create([
-  {name: "Bus 1"},
-  {name: "Bus 2"},
-  {name: "Bus 3"},
-  {name: "Bus 4"}
-  ])
+# Bus.create([
+#   {name: "Bus 1"},
+#   {name: "Bus 2"},
+#   {name: "Bus 3"},
+#   {name: "Bus 4"}
+#   ])
 
-Stop.create([
-  {name: "Stop 1"},
-  {name: "Stop 2"},
-  {name: "Stop 3"},
-  {name: "Stop 4"},
-  {name: "Stop 5"},
-  {name: "Stop 6"},
-  {name: "Stop 7"},
-  {name: "Stop 8"}
-  ])
+
+
+  def self.getBuses
+      response = HTTParty.get("http://api.metro.net/agencies/%20lametro/routes/704/vehicles/")
+      @buses = Bus.getBuses["items"]
+
+
+      @buses.each do |bus|
+
+        Bus.create(latitude: bus["latitude"], name: bus["id"],
+            longitude: bus["longitude"])
+
+    end
+  end
+
+
+# Stop.create([
+#   {name: "Stop 1"},
+#   {name: "Stop 2"},
+#   {name: "Stop 3"},
+#   {name: "Stop 4"},
+#   {name: "Stop 5"},
+#   {name: "Stop 6"},
+#   {name: "Stop 7"},
+#   {name: "Stop 8"}
+#   ])
+
+def self.getStops
+    response = HTTParty.get("http://api.metro.net/agencies/lametro/routes/704/stops/")
+    @stops = Stop.getStops["items"]
+
+
+    @stops.each do |stop|
+
+      Stop.create(latitude: stop["latitude"], name: stop["display_name"],
+          longitude: stop["longitude"])
+
+  end
+end
+
+
+
+
+
+
 
 Bus.all.each do |bus|
 
