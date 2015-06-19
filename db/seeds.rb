@@ -19,7 +19,7 @@ Route.create([
 
 
 
-  def self.getBuses
+  def getBuses
       response = HTTParty.get("http://api.metro.net/agencies/%20lametro/routes/704/vehicles/")
       @buses = Bus.getBuses["items"]
 
@@ -44,7 +44,7 @@ Route.create([
 #   {name: "Stop 8"}
 #   ])
 
-def self.getStops
+def getStops
     response = HTTParty.get("http://api.metro.net/agencies/lametro/routes/704/stops/")
     @stops = Stop.getStops["items"]
 
@@ -57,7 +57,8 @@ def self.getStops
   end
 end
 
-
+getBuses();
+getStops();
 
 
 
