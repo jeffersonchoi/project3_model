@@ -10,12 +10,28 @@ Route.create([
   {name: "Route 704"},
   ])
 
-Bus.create([
-  {name: "Bus 1"},
-  {name: "Bus 2"},
-  {name: "Bus 3"},
-  {name: "Bus 4"}
-  ])
+# Bus.create([
+#   {name: "Bus 1"},
+#   {name: "Bus 2"},
+#   {name: "Bus 3"},
+#   {name: "Bus 4"}
+#   ])
+
+
+
+  def self.getBuses
+      response = HTTParty.get("http://api.metro.net/agencies/%20lametro/routes/704/vehicles/")
+      @buses = Bus.getBuses["items"]
+
+
+      @buses.each do |bus|
+
+        Bus.create(latitude: bus["latitude"], name: bus["id"],
+            longitude: bus["longitude"])
+
+    end
+  end
+
 
 # Stop.create([
 #   {name: "Stop 1"},
