@@ -6,90 +6,40 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Route.create([
-  {name: "Route 704"},
-  ])
+# Load routes from the API
+routes = HTTParty.get("http://api.metro.net/agencies/lametro/routes/")
+routes["items"].each do |r|
 
-# Bus.create([
-#   {name: "Bus 1"},
-#   {name: "Bus 2"},
-#   {name: "Bus 3"},
-#   {name: "Bus 4"}
-#   ])
+    # Create the route
+    route = Route.create(name: r["display_name"])
 
+    # Load the vehicles for the route
+    buses = HTTParty.get("http://api.metro.net/agencies/lametro/routes/" + r["id"] + "/vehicles/")
+    buses["items"].each do |b|
 
+        # Create the bus
+        bus = Bus.create(name: b["id"], route_id: route.id, latitude: b["latitude"], longitude: b["longitude"])
 
-  def getBuses
-      response = HTTParty.get("http://api.metro.net/agencies/%20lametro/routes/704/vehicles/")
-      @buses = Bus.getBuses["items"]
+    end if buses["items"]
 
+    # Load the stops for the route
+    i = 0
+    stops = HTTParty.get("http://api.metro.net/agencies/lametro/routes/" + r["id"] + "/stops/")
+    stops["items"].each do |s|
 
-      @buses.each do |bus|
+      # Create the stop
+      stop = Stop.create(name: s["display_name"], latitude: s["latitude"], longitude: s["longitude"])
 
-        Bus.create(latitude: bus["latitude"], name: bus["id"],
-            longitude: bus["longitude"])
+      # Create the route stop
+      route_stop = RouteStop.create(route_id: route.id, stop_id: stop.id, order: i += 1)
 
-    end
-  end
+      route.buses.each do |bus|
 
+          # Link the buses to the route stop
+          StopTime.create(bus_id: bus.id, route_stop_id: route_stop.id)
 
-# Stop.create([
-#   {name: "Stop 1"},
-#   {name: "Stop 2"},
-#   {name: "Stop 3"},
-#   {name: "Stop 4"},
-#   {name: "Stop 5"},
-#   {name: "Stop 6"},
-#   {name: "Stop 7"},
-#   {name: "Stop 8"}
-#   ])
+      end
 
-def getStops
-    response = HTTParty.get("http://api.metro.net/agencies/lametro/routes/704/stops/")
-    @stops = Stop.getStops["items"]
-
-
-    @stops.each do |stop|
-
-      Stop.create(latitude: stop["latitude"], name: stop["display_name"],
-          longitude: stop["longitude"])
-
-  end
-end
-
-getBuses();
-getStops();
-
-
-
-
-
-Bus.all.each do |bus|
-
-  Route.all.sample(2).each do |route|
-    route.buses << bus
-
-  end
-
-
-end
-
-Route.all.each do |route|
-
-  Stop.all.sample(6).each do |stop|
-
-    RouteStop.create(route_id: route.id, stop_id: stop.id)
-
-  end
-
-end
-
-Bus.all.each do |bus|
-
-  RouteStop.all.each do |routestop|
-
-    StopTime.create(bus_id: bus.id, route_stop_id: routestop.id)
-
-  end
+    end if stops["items"]
 
 end
