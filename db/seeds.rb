@@ -6,51 +6,58 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+
 # Load routes from the API
-routes = HTTParty.get("http://api.metro.net/agencies/lametro/routes/")
-routes["items"].each do |r|
+  routes = HTTParty.get("http://api.metro.net/agencies/lametro/routes/")
 
-    # Create the route
-    route = Route.find_or_create_by(api_id: r["id"]) do |row|
-        row.name = r["display_name"]
+  routes["items"].each do |r|
+
+
+    if r["id"] != "704" && r["id"] != "705" && r["id"] != "710"
+        next
     end
+    # Create the route
+      route = Route.find_or_create_by(api_id: r["id"]) do |row|
 
-    # Load the vehicles for the route
-    buses = HTTParty.get("http://api.metro.net/agencies/lametro/routes/" + r["id"] + "/vehicles/")
-    buses["items"].each do |b|
+              row.name = r["display_name"]
+      end
 
-        # Create the bus
-        bus = Bus.find_or_create_by(api_id: b["id"]) do |row|
-            row.name = b["id"]
-            row.route_id = route.id
-            row.latitude = b["latitude"]
-            row.longitude = b["longitude"]
+      # Load the vehicles for the route
+      buses = HTTParty.get("http://api.metro.net/agencies/lametro/routes/" + r["id"] + "/vehicles/")
+      buses["items"].each do |b|
+
+          # Create the bus
+          bus = Bus.find_or_create_by(api_id: b["id"]) do |row|
+              row.name = b["id"]
+              row.route_id = route.id
+              row.latitude = b["latitude"]
+              row.longitude = b["longitude"]
+          end
+
+      end if buses["items"]
+
+      # Load the stops for the route
+      i = 0
+      stops = HTTParty.get("http://api.metro.net/agencies/lametro/routes/" + r["id"] + "/stops/")
+      stops["items"].each do |s|
+
+        # Create the stop
+        stop = Stop.find_or_create_by(api_id: s["id"]) do |row|
+            row.name = s["display_name"]
+            row.latitude = s["latitude"]
+            row.longitude = s["longitude"]
         end
 
-    end if buses["items"]
+        # Create the route stop
+        route_stop = RouteStop.create(route_id: route.id, stop_id: stop.id, order: i += 1)
 
-    # Load the stops for the route
-    i = 0
-    stops = HTTParty.get("http://api.metro.net/agencies/lametro/routes/" + r["id"] + "/stops/")
-    stops["items"].each do |s|
+        route.buses.each do |bus|
 
-      # Create the stop
-      stop = Stop.find_or_create_by(api_id: s["id"]) do |row|
-          row.name = s["display_name"]
-          row.latitude = s["latitude"]
-          row.longitude = s["longitude"]
-      end
+            # Link the buses to the route stop
+            StopTime.create(bus_id: bus.id, route_stop_id: route_stop.id)
 
-      # Create the route stop
-      route_stop = RouteStop.create(route_id: route.id, stop_id: stop.id, order: i += 1)
+        end
 
-      route.buses.each do |bus|
+      end if stops["items"]
 
-          # Link the buses to the route stop
-          StopTime.create(bus_id: bus.id, route_stop_id: route_stop.id)
-
-      end
-
-    end if stops["items"]
-
-end
+  end
