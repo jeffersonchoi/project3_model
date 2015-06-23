@@ -4,5 +4,6 @@ class Stop < ActiveRecord::Base
   has_many :stop_times, through: :route_stops
   has_many :buses, through: :stop_times
 
+  validates :latitude, presence: true
 
 end
