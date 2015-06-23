@@ -28,6 +28,11 @@ ActiveRecord::Schema.define(version: 20150620004558) do
 
   add_index "buses", ["route_id"], name: "index_buses_on_route_id", using: :btree
 
+  create_table "metros", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "route_stops", force: :cascade do |t|
     t.integer  "route_id"
     t.integer  "stop_id"
