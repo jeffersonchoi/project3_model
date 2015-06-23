@@ -5,13 +5,5 @@ class Bus < ActiveRecord::Base
   has_many :stops, through: :stop_times
 
 
-  def self.getBuses
-    response = HTTParty.get("http://api.metro.net/agencies/%20lametro/routes/704/vehicles/")
-  end
-
-
-
-
-
 
 end

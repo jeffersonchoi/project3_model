@@ -1,6 +1,7 @@
 class StopsController < ApplicationController
   def index
-    @stops = Stop.getStops["items"]
+
+    @stops = Stop.all
 
     respond_to do |format|
       format.html {
