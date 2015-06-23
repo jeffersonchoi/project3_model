@@ -5,9 +5,4 @@ class Stop < ActiveRecord::Base
   has_many :buses, through: :stop_times
 
 
-
-
-
-
-
 end
