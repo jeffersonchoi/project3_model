@@ -5,7 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-
+  busarray = []
 
 # Load routes from the API
   routes = HTTParty.get("http://api.metro.net/agencies/lametro/routes/")
@@ -32,7 +32,16 @@
               row.route_id = route.id
               row.latitude = b["latitude"]
               row.longitude = b["longitude"]
+              busarray.push(row["api_id"])
           end
+
+
+          puts busarray.count
+      # busarray.each do |array|
+      #
+      #   puts array
+      #
+      # end
 
       end if buses["items"]
 
