@@ -21,8 +21,23 @@ function initialize() {
 // Defines variable "bounds" as the LatLngBounds of our map
     var bounds = new google.maps.LatLngBounds();
 // For loop to capture the latitudes and longitudes of each of the items in our array
+    var stopsPath = [];
+
     for (var i = 0; i < results.length; i++) {
-      var stopPositions = new google.maps.LatLng(results[i].latitude, results[i].longitude);
+      stops = new google.maps.LatLng(results[i].latitude, results[i].longitude);
+      stopsPath.push(stops);
+    };
+
+    var flightPath = new google.maps.Polyline({
+      path: stopsPath,
+      geodesic: true,
+      strokeColor: '#FF0000',
+      strokeOpacity: 1.0,
+      strokeWeight: 2
+    });
+
+    for (var i = 0; i < results.length; i++) {
+      var stopPositions = new google.maps.LatLng(results[i].latitude, results[i].longitude)
       var marker = new google.maps.Marker({
         position: stopPositions,
         icon: {
@@ -34,9 +49,10 @@ function initialize() {
       marker.setMap(my_map);
       bounds.extend(myLatlng);
     }
+
 // Fits bounds of the map according to LatLngbounds of our map as defined by coordinates of existing data
     my_map.fitBounds(bounds);
-
+    flightPath.setMap(my_map);
   })
 
 }
