@@ -5,6 +5,6 @@ class Bus < ActiveRecord::Base
   has_many :stops, through: :stop_times
 
   validates :latitude, :longitude , presence: true, numericality: { only_float: true }
- 
+  validates :route_id, :api_id, presence: true, numericality: { only_integer: true }
 
 end
