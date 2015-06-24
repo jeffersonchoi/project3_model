@@ -1,17 +1,22 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Project3Model</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-   <!-- Add the google maps library -->
-  <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyAs2qjvJgNP8iAu4-QS5md4S-OPSIwDXro"></script>
-  <!-- Add JS from the asset pipeline afterwards -->
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-</head>
-<body>
+<<<<<<< HEAD
+<html lang="en">
+  <head>
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<%= yield %>
 
-</body>
-</html>
+    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
+
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+
+    <%= yield %>
+
+  </body>

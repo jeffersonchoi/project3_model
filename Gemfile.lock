@@ -55,6 +55,9 @@ GEM
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.5.2)
+    foundation-rails (5.5.2.1)
+      railties (>= 3.1.0)
+      sass (>= 3.3.0, < 3.5)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
     httparty (0.13.5)
@@ -171,6 +174,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
+  foundation-rails
   httparty (~> 0.13.5)
   jbuilder (~> 2.0)
   jquery-rails

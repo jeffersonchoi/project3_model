@@ -11,7 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20150623173323) do
+>>>>>>> dd4cf334a0706c0ac69a4989137fa565c434d836
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +51,11 @@ ActiveRecord::Schema.define(version: 20150623173323) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "api_id"
+  end
+
+  create_table "static_pages", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "stop_times", force: :cascade do |t|
