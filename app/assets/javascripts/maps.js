@@ -9,6 +9,7 @@ function initialize() {
   var mapProperties = {
     mapTypeId: google.maps.MapTypeId.ROADMAP,
   }
+
 // Define my_map to be map rendered on index page, labeled as "address-map"
   var my_map = new google.maps.Map(document.getElementById("address-map"), mapProperties);
 // Define variable "url" as pathname in json format
@@ -23,11 +24,15 @@ function initialize() {
     for (var i = 0; i < results.length; i++) {
       var stopPositions = new google.maps.LatLng(results[i].latitude, results[i].longitude);
       var marker = new google.maps.Marker({
-        position: stopPositions
+        position: stopPositions,
+        icon: {
+          path: google.maps.SymbolPath.CIRCLE,
+          scale: 3
+        },
       });
-      var myLatlng = stopPositions
+      var myLatlng = stopPositions;
       marker.setMap(my_map);
-      bounds.extend(myLatlng)
+      bounds.extend(myLatlng);
     }
 // Fits bounds of the map according to LatLngbounds of our map as defined by coordinates of existing data
     my_map.fitBounds(bounds);
