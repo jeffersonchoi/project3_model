@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
+
 <html lang="en">
   <head>
      <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
@@ -13,6 +13,10 @@
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
+    <!-- Add the google maps library -->
+   <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyAs2qjvJgNP8iAu4-QS5md4S-OPSIwDXro"></script>
+   <!-- Add JS from the asset pipeline afterwards -->
+   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   </head>
 
   <body>
