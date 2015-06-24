@@ -11,7 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150619210340) do
+
+ActiveRecord::Schema.define(version: 20150623173323) do
+>>>>>>> dd4cf334a0706c0ac69a4989137fa565c434d836
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,16 +25,22 @@ ActiveRecord::Schema.define(version: 20150619210340) do
     t.float    "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "api_id"
   end
 
   add_index "buses", ["route_id"], name: "index_buses_on_route_id", using: :btree
 
+  create_table "metros", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "route_stops", force: :cascade do |t|
     t.integer  "route_id"
     t.integer  "stop_id"
-    t.string   "order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "order"
   end
 
   add_index "route_stops", ["route_id"], name: "index_route_stops_on_route_id", using: :btree
@@ -42,6 +50,7 @@ ActiveRecord::Schema.define(version: 20150619210340) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "api_id"
   end
 
   create_table "static_pages", force: :cascade do |t|
@@ -66,6 +75,7 @@ ActiveRecord::Schema.define(version: 20150619210340) do
     t.float    "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "api_id"
   end
 
   add_foreign_key "buses", "routes"
