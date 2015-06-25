@@ -1,23 +1,19 @@
 class StopsController < ApplicationController
   def index
 
-    @stops = Stop.all
-    @routes = Route.all 
+    @stops = RouteStop
+      .includes(:route)
+      .includes(:stop)
+      .order('"order"')
 
     respond_to do |format|
       format.html {
         render
       }
-      format.json { render :json => @stops.to_json(:include => [:routes])}
+      format.json { render :json => @stops.to_json(include: [:route, :stop]) }
 
     end
 
-    @stops.each do |stop|
-
-      Stop.create(latitude: stop["latitude"], name: stop["display_name"],
-          longitude: stop["longitude"])
-
-    end
   end
 
 
