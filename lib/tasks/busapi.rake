@@ -19,25 +19,26 @@ namespace :busapi do
       buses = HTTParty.get("http://api.metro.net/agencies/lametro/routes/" + r["id"] + "/vehicles/")
 
       buses["items"].each do |b|
-
+          if b["run_id"].split("_").last == "0"
 
           # Create the bus if not exists in database
-          bus = Bus.find_or_create_by(api_id: b["id"]) do |row|
-              row.name = b["id"]
-              row.route_id = route.id
-              row.latitude = b["latitude"]
-              row.longitude = b["longitude"]
-          end
+            bus = Bus.find_or_create_by(api_id: b["id"]) do |row|
+                row.name = b["id"]
+                row.route_id = route.id
+                row.latitude = b["latitude"]
+                row.longitude = b["longitude"]
+            end
 
           # Update the bus after finding or creating the bus
-          bus.update_attributes(
-              :name =>  b["id"],
-              :route_id =>  route.id,
-              :latitude =>  b["latitude"],
-              :longitude => b["longitude"]
-          )
-          #push the buses inside our busarray
-          busarray.push(bus.id)
+            bus.update_attributes(
+                :name =>  b["id"],
+                :route_id =>  route.id,
+                :latitude =>  b["latitude"],
+                :longitude => b["longitude"]
+            )
+            #push the buses inside our busarray
+            busarray.push(bus.id)
+          end
 
 
 
