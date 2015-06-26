@@ -1,16 +1,15 @@
 class StopsController < ApplicationController
   def index
 
-    @stops = RouteStop
-      .includes(:route)
-      .includes(:stop)
-      .order('"order"')
+    @stops = Stop.all
 
     respond_to do |format|
       format.html {
         render
       }
-      format.json { render :json => @stops.to_json(include: [:route, :stop]) }
+      format.json {
+        render json: @stops
+        }
 
     end
 
