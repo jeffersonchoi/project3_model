@@ -26,20 +26,21 @@ function initialize() {
     var stopsPath734 = [];
 // Looping through 3 different routes via json reference
     for (var i = 0; i < results.length; i++) {
-      if (results[i].routes[0].api_id == 704) {
-        var stops704 = new google.maps.LatLng(results[i].latitude, results[i].longitude);
+      if (results[i].route.api_id == 704) {
+        var stops704 = new google.maps.LatLng(results[i].stop.latitude, results[i].stop.longitude);
         stopsPath704.push(stops704);
       }
-      if (results[i].routes[0].api_id == 733) {
-        var stops733 = new google.maps.LatLng(results[i].latitude, results[i].longitude);
+      if (results[i].route.api_id == 733) {
+        var stops733 = new google.maps.LatLng(results[i].stop.latitude, results[i].stop.longitude);
         stopsPath733.push(stops733);
       }
-      if (results[i].routes[0].api_id == 734) {
-        var stops734 = new google.maps.LatLng(results[i].latitude, results[i].longitude);
+      if (results[i].route.api_id == 734) {
+        var stops734 = new google.maps.LatLng(results[i].stop.latitude, results[i].stop.longitude);
         stopsPath734.push(stops734);
       }
     };
-// Coloring route lines of different routes 
+
+// Coloring route lines of different routes
     var path704 = new google.maps.Polyline({
       path: stopsPath704,
       geodesic: true,
@@ -63,9 +64,9 @@ function initialize() {
       strokeOpacity: 1.0,
       strokeWeight: 2
     });
-// Creating markers for all stop positions and 
+// Creating markers for all stop positions and
     for (var i = 0; i < results.length; i++) {
-      var allStopPositions = new google.maps.LatLng(results[i].latitude, results[i].longitude)
+      var allStopPositions = new google.maps.LatLng(results[i].stop.latitude, results[i].stop.longitude)
       var marker = new google.maps.Marker({
         position: allStopPositions,
         icon: {
