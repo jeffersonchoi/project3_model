@@ -2,6 +2,8 @@
 google.maps.event.addDomListener(window, 'load', initialize);
 google.maps.event.addDomListener(window, 'page:load', initialize);
 
+// var bus_icon = <%= image_tag 'bus_icon.png' %>;
+
 // Initialize Google Map
 function initialize() {
 
@@ -47,7 +49,7 @@ function initialize() {
       var allBusPositions = new google.maps.LatLng(results[0].buses[i].latitude, results[0].buses[i].longitude)
       var marker = new google.maps.Marker({
         position: allBusPositions,
-        icon: 'http://umdcipe.org/conferences/DecliningMiddleClassesSpain/Images/bus_icon.png'
+        icon: '/assets/bus_icon.png'
       });
       marker.setMap(my_map);
     }
