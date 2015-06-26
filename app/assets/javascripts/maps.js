@@ -2,6 +2,8 @@
 google.maps.event.addDomListener(window, 'load', initialize);
 google.maps.event.addDomListener(window, 'page:load', initialize);
 
+// var bus_icon = <%= image_tag 'bus_icon.png' %>;
+
 // Initialize Google Map
 function initialize() {
 
@@ -23,9 +25,10 @@ function initialize() {
 // For loop to capture the latitudes and longitudes of each of the items in our array
     var stopsPath704 = [];
 
-// Creating markers for all stop positions and
-    for (var i = 0; i < results.length; i++) {
-      var allStopPositions = new google.maps.LatLng(results[i].latitude, results[i].longitude)
+// For loop for stop positions
+    for (var i = 0; i < results[0].stops.length; i++) {
+      var allStopPositions = new google.maps.LatLng(results[0].stops[i].latitude, results[0].stops[i].longitude)
+      // Pushing stop locations into stopsPath704 array
       stopsPath704.push(allStopPositions)
       var marker = new google.maps.Marker({
         position: allStopPositions,
@@ -41,6 +44,15 @@ function initialize() {
       bounds.extend(allStopPositions);
     }
 
+// For loop for bus positions
+    for (var i = 0; i < results[0].buses.length; i++) {
+      var allBusPositions = new google.maps.LatLng(results[0].buses[i].latitude, results[0].buses[i].longitude)
+      var marker = new google.maps.Marker({
+        position: allBusPositions,
+        icon: '/assets/bus_icon.png'
+      });
+      marker.setMap(my_map);
+    }
 
 // Coloring route lines of different routes
     var path704 = new google.maps.Polyline({
