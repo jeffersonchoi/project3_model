@@ -43,6 +43,9 @@ GEM
     byebug (5.0.0)
       columnize (= 0.9.0)
     chronic (0.10.2)
+    clockwork (1.2.0)
+      activesupport
+      tzinfo
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -173,6 +176,7 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
+  clockwork
   coffee-rails (~> 4.1.0)
   foundation-rails
   httparty (~> 0.13.5)
