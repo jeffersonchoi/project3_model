@@ -13,7 +13,8 @@
   routes["items"].each do |r|
 
 
-    if r["id"] != "704" && r["id"] != "733" && r["id"] != "734"
+    if r["id"] != "704"
+      #  && r["id"] != "733" && r["id"] != "734"
         next
     end
     # Create the route

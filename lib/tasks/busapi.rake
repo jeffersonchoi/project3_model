@@ -7,7 +7,8 @@ namespace :busapi do
     routes = HTTParty.get("http://api.metro.net/agencies/lametro/routes/")
     routes["items"].each do |r|
       #if the route id is not 704 and 733 and 734, then it will keep going and search for other routes
-      if r["id"] != "704" && r["id"] != "733" && r["id"] != "734"
+      if r["id"] != "704"
+        #  && r["id"] != "733" && r["id"] != "734"
           next
       end
       route = Route.find_or_create_by(api_id: r["id"]) do |row|
