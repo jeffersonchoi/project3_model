@@ -25,30 +25,32 @@
 
       # Load the vehicles for the route
       buses = HTTParty.get("http://api.metro.net/agencies/lametro/routes/" + r["id"] + "/vehicles/")
-      buses["items"].each do |b|
 
-          # Create the bus
-          bus = Bus.find_or_create_by(api_id: b["id"]) do |row|
-              row.name = b["id"]
-              row.route_id = route.id
-              row.latitude = b["latitude"]
-              row.longitude = b["longitude"]
-              busarray.push(row["api_id"])
+        buses["items"].each do |b|
+          if b["run_id"].split("_").last == "0"
+            # Create the bus
+            bus = Bus.find_or_create_by(api_id: b["id"]) do |row|
+                row.name = b["id"]
+                row.route_id = route.id
+                row.latitude = b["latitude"]
+                row.longitude = b["longitude"]
+                busarray.push(row["api_id"])
+            end
+
+
+            puts busarray.count
           end
+        # busarray.each do |array|
+        #
+        #   puts array
+        #
+        # end
 
-
-          puts busarray.count
-      # busarray.each do |array|
-      #
-      #   puts array
-      #
-      # end
-
-      end if buses["items"]
+        end if buses["items"]
 
       # Load the stops for the route
       i = 0
-      stops = HTTParty.get("http://api.metro.net/agencies/lametro/routes/" + r["id"] + "/stops/")
+      stops = HTTParty.get("http://api.metro.net/agencies/lametro/routes/" + r["id"] + "/sequence/")
       stops["items"].each do |s|
 
         # Create the stop
