@@ -24,8 +24,8 @@ function initialize() {
     var stopsPath704 = [];
 
 // Creating markers for all stop positions and
-    for (var i = 0; i < results.length; i++) {
-      var allStopPositions = new google.maps.LatLng(results[i].latitude, results[i].longitude)
+    for (var i = 0; i < results[0].stops.length; i++) {
+      var allStopPositions = new google.maps.LatLng(results[0].stops[i].latitude, results[0].stops[i].longitude)
       stopsPath704.push(allStopPositions)
       var marker = new google.maps.Marker({
         position: allStopPositions,

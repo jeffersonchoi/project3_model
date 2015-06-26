@@ -2,15 +2,15 @@ class StopsController < ApplicationController
   def index
 
     @stops = Stop.all
+    @buses = Bus.all
 
     respond_to do |format|
       format.html {
         render
       }
       format.json {
-        render json: @stops
+        render :json => {:stops => @stops, :buses => @buses }
         }
-
     end
 
   end
