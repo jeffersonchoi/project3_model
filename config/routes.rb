@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
   
+ root 'stops#index'
 
-  root :to => redirect('/stops')
+  # root :to => redirect('/stops')
   
 
   #   resources :
