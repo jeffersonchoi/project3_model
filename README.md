@@ -3,7 +3,7 @@
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
-[![Build Status](https://travis-ci.org/<owner>/<repo>.svg?branch=master)](https://travis-ci.org/<owner>/<repo>)
+[![Build Status](https://travis-ci.org/jeffersonchoi/project3_model.svg?branch=master)](https://travis-ci.org/jeffersonchoi/project3_model)
 
 Things you may want to cover:
 
