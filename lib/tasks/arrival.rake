@@ -2,8 +2,8 @@ namespace :arrival do
   desc "make the bus model update from API"
   task jefferson: :environment do
 
-    start = 0
-    ending = 999999
+    start = 17306
+    ending = 999999999
 
     while start < ending do
 
