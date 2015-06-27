@@ -2,9 +2,8 @@
 google.maps.event.addDomListener(window, 'load', initialize);
 google.maps.event.addDomListener(window, 'page:load', initialize);
 
-var origin = new google.maps.LatLng(34.0150299, -118.49735);
-var destination = new google.maps.LatLng(34.0140399, -118.4977299);
-
+var stopsPath704 = [];
+var busLocations = [];
 // Initialize Google Map
 function initialize() {
 
@@ -23,13 +22,11 @@ function initialize() {
     if(!(results instanceof Array)) results = [results]
 // Defines variable "bounds" as the LatLngBounds of our map
     var bounds = new google.maps.LatLngBounds();
-// For loop to capture the latitudes and longitudes of each of the items in our array
-    var stopsPath704 = [];
-
+// Pushing stop locations into stopsPath704 array
+    // var stopsPath704 =[];
 // For loop for stop positions
     for (var i = 0; i < results[0].stops.length; i++) {
       var allStopPositions = new google.maps.LatLng(results[0].stops[i].latitude, results[0].stops[i].longitude)
-      // Pushing stop locations into stopsPath704 array
       stopsPath704.push(allStopPositions)
       var marker = new google.maps.Marker({
         position: allStopPositions,
@@ -47,13 +44,17 @@ function initialize() {
 
 // For loop for bus positions
     for (var i = 0; i < results[0].buses.length; i++) {
-      var allBusPositions = new google.maps.LatLng(results[0].buses[i].latitude, results[0].buses[i].longitude)
+      var bus_position = new google.maps.LatLng(results[0].buses[i].latitude, results[0].buses[i].longitude)
+      busLocations.push(bus_position)
       var marker = new google.maps.Marker({
-        position: allBusPositions,
+        position: bus_position,
         icon: '/assets/bus_icon.png'
       });
       marker.setMap(my_map);
+
     }
+
+    calculateDistances(bus_position, stopsPath704)
 
 // Coloring route lines of different routes
     var path704 = new google.maps.Polyline({
@@ -74,12 +75,25 @@ function initialize() {
 
 }
 
-function calculateDistances() {
-  var service = new google.maps.DistanceMatrixService();
-  service.getDistanceMatrix(
+
+function calculateDistances(bus_location, bus_stops) {
+  var service = new google.maps.DirectionsService();
+
+  waypoints = []
+  bus_stops = bus_stops.splice(-8)
+  for(var i = 0; i < bus_stops.length; i++){
+    waypoints.push( {location: bus_stops[i]} )
+  }
+
+  var destination = bus_stops.pop()
+
+ //console.log(bus_stops)
+
+  service.route(
     {
-      origins: [origin],
-      destinations: [destination],
+      origin: bus_location,
+      waypoints: waypoints,
+      destination: destination,
       travelMode: google.maps.TravelMode.DRIVING,
       unitSystem: google.maps.UnitSystem.METRIC,
       avoidHighways: false,
@@ -90,20 +104,21 @@ function calculateDistances() {
 
 function callback(response, status) {
   if (status == google.maps.DistanceMatrixStatus.OK) {
+    console.log("callback running");
+    console.log(response)
     var origin = response.originAddresses;
     var destination = response.destinationAddresses;
-    console.log(response)
-    console.log("callback running");
-    console.log(response.rows[0].elements[0]);
-    var results = response.rows[0].elements[0];
+
+    var results = response.routes[0].legs[0];
     var distance = results.distance.text;
     var duration = results.duration.text;
-    console.log(duration)
     document.getElementById('testDiv').innerHTML = duration;
+  } else {
+    console.log("something's wrong with calculateDistances")
+    console.log(status)
   }
 }
-
-
+// HOW TO SPLIT A LONG ARRAY INTO A SMALLER ARRAY
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Looping through 3 different routes via json reference
