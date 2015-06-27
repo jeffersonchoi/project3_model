@@ -76,7 +76,7 @@
       stop14436 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/14436/predictions/")
       stop5387 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/5387/predictions/")
       stop6033 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/6033/predictions/")
-      stop1433 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/1433/predictions/")
+      stop1443 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/1443/predictions/")
       stop17306 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/17306/predictions/")
       stop5400 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/5400/predictions/")
       stop8011 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/8011/predictions/")
@@ -214,9 +214,9 @@
             stop.update_attributes(
               :seconds => stop6033["items"][0]["seconds"]
             )
-          when 1433
+          when 1443
             stop.update_attributes(
-              :seconds => stop1433["items"][0]["seconds"]
+              :seconds => stop1443["items"][0]["seconds"]
             )
           when 17306
             stop.update_attributes(
