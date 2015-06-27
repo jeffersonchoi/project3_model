@@ -5,9 +5,11 @@ Rails.application.routes.draw do
   root :to => redirect('/stops')
   #   resources :
 
+  get "/about" => "static_page#about"
 
   resources :stops
   resources :buses
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.
