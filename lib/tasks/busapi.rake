@@ -19,6 +19,9 @@ namespace :busapi do
       buses = HTTParty.get("http://api.metro.net/agencies/lametro/routes/" + r["id"] + "/vehicles/")
 
       buses["items"].each do |b|
+
+        if b["run_id"]
+
           if b["run_id"].split("_").last == "0"
 
           # Create the bus if not exists in database
@@ -39,6 +42,8 @@ namespace :busapi do
             #push the buses inside our busarray
             busarray.push(bus.id)
           end
+
+        end
 
 
 
