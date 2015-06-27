@@ -54,6 +54,39 @@
       stop29 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/29/predictions/")
       stop4096 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/4096/predictions/")
       stop14360 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/14360/predictions/")
+      stop6001 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/6001/predictions/")
+      stop5977 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/5977/predictions/")
+      stop5979 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/5979/predictions/")
+      stop6041 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/6041/predictions/")
+      stop6039 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/6039/predictions/")
+      stop14424 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/14424/predictions/")
+      stop6058 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/6058/predictions/")
+      stop6040 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/6040/predictions/")
+      stop5917 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/5917/predictions/")
+      stop6050 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/6050/predictions/")
+      stop6008 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/6008/predictions/")
+      stop14378 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/14378/predictions/")
+      stop7946 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/7946/predictions/")
+      stop6031 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/6031/predictions/")
+      stop6014 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/6014/predictions/")
+      stop6052 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/6052/predictions/")
+      stop6023 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/6023/predictions/")
+      stop6019 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/6019/predictions/")
+      stop5386 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/5386/predictions/")
+      stop14436 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/14436/predictions/")
+      stop5387 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/5387/predictions/")
+      stop6033 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/6033/predictions/")
+      stop1433 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/1433/predictions/")
+      stop17306 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/17306/predictions/")
+      stop5400 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/5400/predictions/")
+      stop8011 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/8011/predictions/")
+      stop2421 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/2421/predictions/")
+      stop8040 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/8040/predictions/")
+      stop668 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/668/predictions/")
+      stop660 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/660/predictions/")
+
+
+
 
       stops["items"].each do |s|
         # stopABC = HTTParty.get("http://api.metro.net/agencies/lametro/stops/#{s["id"]}/predictions/")
@@ -79,20 +112,149 @@
 
           end
 
-          if stop["api_id"] == 29
+          case stop["api_id"]
+
+          when 29
             stop.update_attributes(
               :seconds => stop29["items"][0]["seconds"]
             )
-
-          elsif stop["api_id"] == 4096
+          when 4096
             stop.update_attributes(
               :seconds => stop4096["items"][0]["seconds"]
             )
-          elsif stop["api_id"] == 14360
+          when 14360
             stop.update_attributes(
               :seconds => stop14360["items"][0]["seconds"]
             )
+          when 6001
+            stop.update_attributes(
+              :seconds => stop6001["items"][0]["seconds"]
+            )
+          when 5977
+            stop.update_attributes(
+              :seconds => stop5977["items"][0]["seconds"]
+            )
+          when 5979
+            stop.update_attributes(
+              :seconds => stop5979["items"][0]["seconds"]
+            )
+          when 6041
+            stop.update_attributes(
+              :seconds => stop6041["items"][0]["seconds"]
+            )
+          when 6039
+            stop.update_attributes(
+              :seconds => stop6039["items"][0]["seconds"]
+            )
+          when 14424
+            stop.update_attributes(
+              :seconds => stop14424["items"][0]["seconds"]
+            )
+          when 6058
+            stop.update_attributes(
+              :seconds => stop6058["items"][0]["seconds"]
+            )
+          when 6040
+            stop.update_attributes(
+              :seconds => stop6040["items"][0]["seconds"]
+            )
+          when 5917
+            stop.update_attributes(
+              :seconds => stop5917["items"][0]["seconds"]
+            )
+          when 6050
+            stop.update_attributes(
+              :seconds => stop6050["items"][0]["seconds"]
+            )
+          when 6008
+            stop.update_attributes(
+              :seconds => stop6008["items"][0]["seconds"]
+            )
+          when 14378
+            stop.update_attributes(
+              :seconds => stop14378["items"][0]["seconds"]
+            )
+          when 7946
+            stop.update_attributes(
+              :seconds => stop7946["items"][0]["seconds"]
+            )
+          when 6031
+            stop.update_attributes(
+              :seconds => stop6031["items"][0]["seconds"]
+            )
+          when 6014
+            stop.update_attributes(
+              :seconds => stop6014["items"][0]["seconds"]
+            )
+          when 6052
+            stop.update_attributes(
+              :seconds => stop6052["items"][0]["seconds"]
+            )
+          when 6023
+            stop.update_attributes(
+              :seconds => stop6023["items"][0]["seconds"]
+            )
+          when 6019
+            stop.update_attributes(
+              :seconds => stop6019["items"][0]["seconds"]
+            )
+          when 5386
+            stop.update_attributes(
+              :seconds => stop5386["items"][0]["seconds"]
+            )
+          when 14436
+            stop.update_attributes(
+              :seconds => stop14436["items"][0]["seconds"]
+            )
+          when 5387
+            stop.update_attributes(
+              :seconds => stop5387["items"][0]["seconds"]
+            )
+          when 6033
+            stop.update_attributes(
+              :seconds => stop6033["items"][0]["seconds"]
+            )
+          when 1433
+            stop.update_attributes(
+              :seconds => stop1433["items"][0]["seconds"]
+            )
+          when 17306
+            stop.update_attributes(
+              :seconds => stop17306["items"][0]["seconds"]
+            )
+          when 5400
+            stop.update_attributes(
+              :seconds => stop5400["items"][0]["seconds"]
+            )
+          when 8011
+            stop.update_attributes(
+              :seconds => stop8011["items"][0]["seconds"]
+            )
+          when 2421
+            stop.update_attributes(
+              :seconds => stop2421["items"][0]["seconds"]
+            )
+          when 8040
+            stop.update_attributes(
+              :seconds => stop8040["items"][0]["seconds"]
+            )
+          when 668
+            stop.update_attributes(
+              :seconds => stop668["items"][0]["seconds"]
+            )
+          when 660
+            stop.update_attributes(
+              :seconds => stop660["items"][0]["seconds"]
+            )
+
+
+
           end
+
+
+
+
+
 
 
 

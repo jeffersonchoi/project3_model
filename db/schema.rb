@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 20150627035730) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "api_id"
-    t.string   "seconds"
+    t.integer  "seconds"
   end
 
   add_foreign_key "buses", "routes"
