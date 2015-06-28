@@ -149,147 +149,302 @@
           case stop["api_id"]
 
           when 29
-
-            if stop29["items"][0]["run_id"].split("_").first == "704" &&  stop29["items"][0]["run_id"].split("_").last == "0"
-              # puts stop29["items"][0]["seconds"]
+            stop29["items"].each do |s|
+              if s["run_id"].split("_").first == "704"
+                stop.update_attributes(
+                 :seconds => s["seconds"]
+                )
+              break
+              end
             end
-            stop.update_attributes(
-              :seconds => stop29["items"][0]["seconds"]
-            )
-
           when 4096
-
-            if stop4096["items"][0]["run_id"].split("_").first == "704" &&      stop4096["items"][0]["run_id"].split("_").last == "0"
-              # puts stop4096["items"][0]["seconds"]
+            stop4096["items"].each do |s|
+              if s["run_id"].split("_").first == "704"
+                stop.update_attributes(
+                 :seconds => s["seconds"]
+                )
+              break
+              end
             end
-
-            stop.update_attributes(
-              :seconds => stop4096["items"][0]["seconds"]
-            )
           when 14360
-            stop.update_attributes(
-              :seconds => stop14360["items"][0]["seconds"]
-            )
+            stop14360["items"].each do |s|
+              if s["run_id"].split("_").first == "704"
+                stop.update_attributes(
+                 :seconds => s["seconds"]
+                )
+              break
+              end
+            end
           when 6001
-            stop.update_attributes(
-              :seconds => stop6001["items"][0]["seconds"]
-            )
+            stop6001["items"].each do |s|
+              if s["run_id"].split("_").first == "704"
+                stop.update_attributes(
+                 :seconds => s["seconds"]
+                )
+              break
+              end
+            end
           when 5977
-            stop.update_attributes(
-              :seconds => stop5977["items"][0]["seconds"]
-            )
+            stop5977["items"].each do |s|
+              if s["run_id"].split("_").first == "704"
+                stop.update_attributes(
+                 :seconds => s["seconds"]
+                )
+              break
+              end
+            end
           when 5979
-            stop.update_attributes(
-              :seconds => stop5979["items"][0]["seconds"]
-            )
+            stop5979["items"].each do |s|
+              if s["run_id"].split("_").first == "704"
+                stop.update_attributes(
+                 :seconds => s["seconds"]
+                )
+              break
+              end
+            end
           when 6041
-            stop.update_attributes(
-              :seconds => stop6041["items"][0]["seconds"]
-            )
+            stop6041["items"].each do |s|
+              if s["run_id"].split("_").first == "704"
+                stop.update_attributes(
+                 :seconds => s["seconds"]
+                )
+              break
+              end
+            end
           when 6039
-            stop.update_attributes(
-              :seconds => stop6039["items"][0]["seconds"]
-            )
+            stop6039["items"].each do |s|
+              if s["run_id"].split("_").first == "704"
+                stop.update_attributes(
+                 :seconds => s["seconds"]
+                )
+              break
+              end
+            end
           when 14424
-            stop.update_attributes(
-              :seconds => stop14424["items"][0]["seconds"]
-            )
+            stop14424["items"].each do |s|
+              if s["run_id"].split("_").first == "704"
+                stop.update_attributes(
+                 :seconds => s["seconds"]
+                )
+              break
+              end
+            end
           when 6058
-            stop.update_attributes(
-              :seconds => stop6058["items"][0]["seconds"]
-            )
+            stop6058["items"].each do |s|
+              if s["run_id"].split("_").first == "704"
+                stop.update_attributes(
+                 :seconds => s["seconds"]
+                )
+              break
+              end
+            end
           when 6040
-            stop.update_attributes(
-              :seconds => stop6040["items"][0]["seconds"]
-            )
+            stop6040["items"].each do |s|
+              if s["run_id"].split("_").first == "704"
+                stop.update_attributes(
+                 :seconds => s["seconds"]
+                )
+              break
+              end
+            end
           when 5917
-            stop.update_attributes(
-              :seconds => stop5917["items"][0]["seconds"]
-            )
+            stop5917["items"].each do |s|
+              if s["run_id"].split("_").first == "704"
+                stop.update_attributes(
+                 :seconds => s["seconds"]
+                )
+              break
+              end
+            end
           when 6050
-            stop.update_attributes(
-              :seconds => stop6050["items"][0]["seconds"]
-            )
+            stop6050["items"].each do |s|
+              if s["run_id"].split("_").first == "704"
+                stop.update_attributes(
+                 :seconds => s["seconds"]
+                )
+              break
+              end
+            end
           when 6008
-            stop.update_attributes(
-              :seconds => stop6008["items"][0]["seconds"]
-            )
+            stop6008["items"].each do |s|
+              if s["run_id"].split("_").first == "704"
+                stop.update_attributes(
+                 :seconds => s["seconds"]
+                )
+              break
+              end
+            end
           when 14378
-            stop.update_attributes(
-              :seconds => stop14378["items"][0]["seconds"]
-            )
+            stop14378["items"].each do |s|
+              if s["run_id"].split("_").first == "704"
+                stop.update_attributes(
+                 :seconds => s["seconds"]
+                )
+              break
+              end
+            end
           when 7946
-            stop.update_attributes(
-              :seconds => stop7946["items"][0]["seconds"]
-            )
+            stop7946["items"].each do |s|
+              if s["run_id"].split("_").first == "704"
+                stop.update_attributes(
+                 :seconds => s["seconds"]
+                )
+              break
+              end
+            end
           when 6031
-            stop.update_attributes(
-              :seconds => stop6031["items"][0]["seconds"]
-            )
+            stop6031["items"].each do |s|
+              if s["run_id"].split("_").first == "704"
+                stop.update_attributes(
+                 :seconds => s["seconds"]
+                )
+              break
+              end
+            end
           when 6014
-            stop.update_attributes(
-              :seconds => stop6014["items"][0]["seconds"]
-            )
+            stop6014["items"].each do |s|
+              if s["run_id"].split("_").first == "704"
+                stop.update_attributes(
+                 :seconds => s["seconds"]
+                )
+              break
+              end
+            end
           when 6052
-            stop.update_attributes(
-              :seconds => stop6052["items"][0]["seconds"]
-            )
+            stop6052["items"].each do |s|
+              if s["run_id"].split("_").first == "704"
+                stop.update_attributes(
+                 :seconds => s["seconds"]
+                )
+              break
+              end
+            end
           when 6023
-            stop.update_attributes(
-              :seconds => stop6023["items"][0]["seconds"]
-            )
+            stop6023["items"].each do |s|
+              if s["run_id"].split("_").first == "704"
+                stop.update_attributes(
+                 :seconds => s["seconds"]
+                )
+              break
+              end
+            end
           when 6019
-            stop.update_attributes(
-              :seconds => stop6019["items"][0]["seconds"]
-            )
+            stop6019["items"].each do |s|
+              if s["run_id"].split("_").first == "704"
+                stop.update_attributes(
+                 :seconds => s["seconds"]
+                )
+              break
+              end
+            end
           when 5386
-            stop.update_attributes(
-              :seconds => stop5386["items"][0]["seconds"]
-            )
+            stop5386["items"].each do |s|
+              if s["run_id"].split("_").first == "704"
+                stop.update_attributes(
+                 :seconds => s["seconds"]
+                )
+              break
+              end
+            end
           when 14436
-            stop.update_attributes(
-              :seconds => stop14436["items"][0]["seconds"]
-            )
+            stop14436["items"].each do |s|
+              if s["run_id"].split("_").first == "704"
+                stop.update_attributes(
+                 :seconds => s["seconds"]
+                )
+              break
+              end
+            end
           when 5387
-            stop.update_attributes(
-              :seconds => stop5387["items"][0]["seconds"]
-            )
+            stop5387["items"].each do |s|
+              if s["run_id"].split("_").first == "704"
+                stop.update_attributes(
+                 :seconds => s["seconds"]
+                )
+              break
+              end
+            end
           when 6033
-            stop.update_attributes(
-              :seconds => stop6033["items"][0]["seconds"]
-            )
+            stop6033["items"].each do |s|
+              if s["run_id"].split("_").first == "704"
+                stop.update_attributes(
+                 :seconds => s["seconds"]
+                )
+              break
+              end
+            end
           when 1443
-            stop.update_attributes(
-              :seconds => stop1443["items"][0]["seconds"]
-            )
+            stop1443["items"].each do |s|
+              if s["run_id"].split("_").first == "704"
+                stop.update_attributes(
+                 :seconds => s["seconds"]
+                )
+              break
+              end
+            end
           when 17306
-            stop.update_attributes(
-              :seconds => stop17306["items"][0]["seconds"]
-            )
+            stop17306["items"].each do |s|
+              if s["run_id"].split("_").first == "704"
+                stop.update_attributes(
+                 :seconds => s["seconds"]
+                )
+              break
+              end
+            end
           when 5400
-            stop.update_attributes(
-              :seconds => stop5400["items"][0]["seconds"]
-            )
+            stop5400["items"].each do |s|
+              if s["run_id"].split("_").first == "704"
+                stop.update_attributes(
+                 :seconds => s["seconds"]
+                )
+              break
+              end
+            end
           when 8011
-            stop.update_attributes(
-              :seconds => stop8011["items"][0]["seconds"]
-            )
+            stop8011["items"].each do |s|
+              if s["run_id"].split("_").first == "704"
+                stop.update_attributes(
+                 :seconds => s["seconds"]
+                )
+              break
+              end
+            end
           when 2421
-            stop.update_attributes(
-              :seconds => stop2421["items"][0]["seconds"]
-            )
+            stop2421["items"].each do |s|
+              if s["run_id"].split("_").first == "704"
+                stop.update_attributes(
+                 :seconds => s["seconds"]
+                )
+              break
+              end
+            end
           when 8040
-            stop.update_attributes(
-              :seconds => stop8040["items"][0]["seconds"]
-            )
+            stop8040["items"].each do |s|
+              if s["run_id"].split("_").first == "704"
+                stop.update_attributes(
+                 :seconds => s["seconds"]
+                )
+              break
+              end
+            end
           when 668
-            stop.update_attributes(
-              :seconds => stop668["items"][0]["seconds"]
-            )
+            stop668["items"].each do |s|
+              if s["run_id"].split("_").first == "704"
+                stop.update_attributes(
+                 :seconds => s["seconds"]
+                )
+              break
+              end
+            end
           when 660
-            stop.update_attributes(
-              :seconds => stop660["items"][0]["seconds"]
-            )
+            stop660["items"].each do |s|
+              if s["run_id"].split("_").first == "704"
+                stop.update_attributes(
+                 :seconds => s["seconds"]
+                )
+              break
+              end
+            end
           when 1605
             stop1605["items"].each do |s|
               if s["run_id"].split("_").first == "704"
