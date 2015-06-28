@@ -43,12 +43,14 @@ function initialize() {
       var infowindow = new google.maps.InfoWindow();
 
       google.maps.event.addListener(marker, 'mouseover', function(marker, i) {
-          var content = '<div>'+results[0].stops[i].seconds+'</div>'
-          infowindow.setContent(content);
-          infowindow.open(my_map, marker);
-      }(marker, i));
+          return function (){
+            var content = '<div>'+results[0].stops[i].seconds+'</div>'
+            infowindow.setContent(content);
+            infowindow.open(my_map, marker);
+          };
+      }(marker,i));
 
-      google.maps.event.addListener(marker, 'mouseout', function(marker, i) {
+      google.maps.event.addListener(marker, 'click', function(marker, i) {
           infowindow.close(my_map, marker);
       }(marker, i));
 
