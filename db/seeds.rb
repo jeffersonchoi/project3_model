@@ -160,9 +160,18 @@
           when 4096
             stop4096["items"].each do |s|
               if s["run_id"].split("_").first == "704"
-                stop.update_attributes(
-                 :seconds => s["seconds"]
-                )
+                if s["run_id"].split("_").last == "0"
+                  stop.update_attributes(
+                   :seconds => s["seconds"],
+                   :direction => "outbound"
+                  )
+                elsif s["run_id"].split("_").last == "1"
+                  stop.update_attributes(
+                   :seconds => s["seconds"],
+                   :direction => "inbound"
+                  )
+                end
+
               break
               end
             end
