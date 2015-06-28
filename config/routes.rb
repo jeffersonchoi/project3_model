@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   
 
-  resources :users
+
   root :to => redirect('/stops')
   #   resources :
 
@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   resources :stops
   resources :buses
+  resources :users
 
 
 
