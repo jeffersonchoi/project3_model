@@ -117,10 +117,20 @@
           case stop["api_id"]
 
           when 29
+
+            if stop29["items"][0]["run_id"].split("_").first == "704" &&  stop29["items"][0]["run_id"].split("_").last == "0"
+              puts stop29["items"][0]["seconds"]
+            end
             stop.update_attributes(
               :seconds => stop29["items"][0]["seconds"]
             )
+
           when 4096
+
+            if stop4096["items"][0]["run_id"].split("_").first == "704" &&      stop4096["items"][0]["run_id"].split("_").last == "0"
+              puts stop4096["items"][0]["seconds"]
+            end
+
             stop.update_attributes(
               :seconds => stop4096["items"][0]["seconds"]
             )
