@@ -28,7 +28,7 @@
 
         buses["items"].each do |b|
           if b["run_id"]
-            if b["run_id"].split("_").last == "0"
+            # if b["run_id"].split("_").last == "0"
               # Create the bus
               bus = Bus.find_or_create_by(api_id: b["id"]) do |row|
                   row.name = b["id"]
@@ -40,7 +40,7 @@
 
 
             puts busarray.count
-            end
+            # end
           end
         # busarray.each do |array|
         #
