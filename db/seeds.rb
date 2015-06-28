@@ -27,18 +27,20 @@
       buses = HTTParty.get("http://api.metro.net/agencies/lametro/routes/" + r["id"] + "/vehicles/")
 
         buses["items"].each do |b|
-          if b["run_id"].split("_").last == "0"
-            # Create the bus
-            bus = Bus.find_or_create_by(api_id: b["id"]) do |row|
-                row.name = b["id"]
-                row.route_id = route.id
-                row.latitude = b["latitude"]
-                row.longitude = b["longitude"]
-                busarray.push(row["api_id"])
-            end
+          if b["run_id"]
+            if b["run_id"].split("_").last == "0"
+              # Create the bus
+              bus = Bus.find_or_create_by(api_id: b["id"]) do |row|
+                  row.name = b["id"]
+                  row.route_id = route.id
+                  row.latitude = b["latitude"]
+                  row.longitude = b["longitude"]
+                  busarray.push(row["api_id"])
+              end
 
 
             puts busarray.count
+            end
           end
         # busarray.each do |array|
         #
