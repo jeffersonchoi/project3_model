@@ -52,7 +52,7 @@
 
       # Load the stops for the route
       i = 0
-      stops = HTTParty.get("http://api.metro.net/agencies/lametro/routes/" + r["id"] + "/sequence/")
+      stops = HTTParty.get("https://bus-stops-json.herokuapp.com/stops.json")
       stop29 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/29/predictions/")
       stop4096 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/4096/predictions/")
       stop14360 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/14360/predictions/")
@@ -122,11 +122,11 @@
 
 
 
-      stops["items"].each do |s|
+      stops.each do |s|
         # stopABC = HTTParty.get("http://api.metro.net/agencies/lametro/stops/#{s["id"]}/predictions/")
 
         # Create the stop
-          stop = Stop.find_or_create_by(api_id: s["id"]) do |row|
+          stop = Stop.find_or_create_by(api_id: s["api_id"]) do |row|
               # puts stop29["items"][0]["seconds"]
               row.name = s["display_name"]
               row.latitude = s["latitude"]
@@ -775,7 +775,7 @@
         end
       # end
 
-      end if stops["items"]
+      end
 
 
 
