@@ -16,7 +16,6 @@ RSpec.feature "Pages", type: :feature do
   scenario "valid Contact" do
    visit '/stops'
    click_link "Contact"
-   click_link "Contact"
    expect(page).to have_content("Contact Us")
   end
 

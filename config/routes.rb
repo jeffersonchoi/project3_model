@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
 
-  
+
 
 
   root :to => redirect('/stops')
   #   resources :
 
   get "/about" => "static_page#about"
-  get "/contact" => "static_page#contact"
+  get "/contact" => "users#new"
   get "/bus_routes" => "static_page#bus_routes"
 
   resources :stops
