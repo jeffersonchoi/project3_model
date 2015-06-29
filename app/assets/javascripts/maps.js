@@ -54,7 +54,7 @@ function initialize() {
 
       var infowindow = new google.maps.InfoWindow();
 
-      google.maps.event.addListener(marker, 'click', function(marker, i) {
+      google.maps.event.addListener(marker, 'mouseover', function(marker, i) {
           return function (){
             var stopName = results[0].stops[i].name
             var secondsTillArrival = results[0].stops[i].seconds
@@ -82,17 +82,10 @@ function initialize() {
     for (var i = 0; i < results[0].buses.length; i++) {
       var bus_position = new google.maps.LatLng(results[0].buses[i].latitude, results[0].buses[i].longitude)
       busLocations.push(bus_position)
-      if (results[0].buses[i].route_id == 0){
-        var marker = new google.maps.Marker({
-          position: bus_position,
-          icon: '/assets/bus_icon.png'
-        });
-      } else {
-        var marker = new google.maps.Marker({
-          position: bus_position,
-          icon: '/assets/bus_icon(reverse).png'
-        });
-      }
+      var marker = new google.maps.Marker({
+        position: bus_position,
+        icon: '/assets/bus_icon.png'
+      });
       marker.setMap(my_map);
     }
 
