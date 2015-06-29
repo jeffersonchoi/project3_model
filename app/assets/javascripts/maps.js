@@ -82,7 +82,16 @@ function initialize() {
     for (var i = 0; i < results[0].buses.length; i++) {
       var bus_position = new google.maps.LatLng(results[0].buses[i].latitude, results[0].buses[i].longitude)
       busLocations.push(bus_position)
-  
+      if (results[0].buses[i].route_id == 0){
+        var marker = new google.maps.Marker({
+          position: bus_position,
+          icon: '/assets/bus_icon.png'
+        });
+      } else {
+        var marker = new google.maps.Marker({
+          position: bus_position,
+          icon: '/assets/bus_icon(reverse).png'
+        });
       }
       marker.setMap(my_map);
     }
