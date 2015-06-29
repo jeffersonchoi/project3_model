@@ -54,7 +54,7 @@ function initialize() {
 
       var infowindow = new google.maps.InfoWindow();
 
-      google.maps.event.addListener(marker, 'mouseover', function(marker, i) {
+      google.maps.event.addListener(marker, 'click', function(marker, i) {
           return function (){
             var stopName = results[0].stops[i].name
             var secondsTillArrival = results[0].stops[i].seconds
