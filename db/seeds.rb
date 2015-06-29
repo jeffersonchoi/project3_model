@@ -119,6 +119,7 @@
       stop14357 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/14357/predictions/")
       stop14379 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/14379/predictions/")
       stop5969 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/5969/predictions/")
+      stop5985 = HTTParty.get("http://api.metro.net/agencies/lametro/stops/5985/predictions/")
 
 
 
@@ -126,7 +127,7 @@
         # stopABC = HTTParty.get("http://api.metro.net/agencies/lametro/stops/#{s["id"]}/predictions/")
 
         # Create the stop
-          stop = Stop.find_or_create_by(api_id: s["api_id"]) do |row|
+          stop = Stop.create(api_id: s["api_id"]) do |row|
               # puts stop29["items"][0]["seconds"]
               row.name = s["display_name"]
               row.latitude = s["latitude"]
@@ -466,6 +467,17 @@
           when 30000
             stop30000["items"].each do |s|
               if s["run_id"].split("_").first == "704"
+                if s["run_id"].split("_").last == "0"
+                  stop.update_attributes(
+                   :seconds => s["seconds"],
+                   :direction => "outbound"
+                  )
+                elsif s["run_id"].split("_").last == "1"
+                  stop.update_attributes(
+                   :seconds => s["seconds"],
+                   :direction => "inbound"
+                  )
+                end
                 stop.update_attributes(
                  :seconds => s["seconds"]
                 )
@@ -751,7 +763,15 @@
               break
               end
             end
-
+          when 5985
+            stop5985["items"].each do |s|
+              if s["run_id"].split("_").first == "704"
+                stop.update_attributes(
+                 :seconds => s["seconds"]
+                )
+              break
+              end
+            end
 
 
           end
