@@ -1,0 +1,44 @@
+<!-- nav bar -->
+  <div class="row">
+       <div class="large-12 columns">
+         <div class="nav-bar right">
+          <ul class="button-group">
+            <li><a href="/stops" class="button">Home</a></li>
+            <li><a href="/about" class="button">About</a></li>
+            <li><a href="/contact" class="button">Contact</a></li>
+            <li><a href="/bus_routes" class="button">Bus Routes</a></li>
+           </ul>
+         </div>
+         <h1>Real-Time Bus Tracker</h1>
+         <hr/>
+       </div>
+     </div>
+
+     <h4>Route 704</h4>
+<!-- Route Table -->
+<table style="width:100%">
+  <tr>
+    <strong><th>Stop_ID</th></strong>
+    <th>Intersection</th>
+    <th>Seconds Till Arrival of Next Bus</th>
+  </tr>
+
+  <% @stops.each do |stop| %>
+    <tr>
+      <td><%= stop.id %></td><td><%= stop.name %></td><td><%= stop.seconds %></td>
+    </tr>
+  <% end %>
+
+</table>
+
+<!-- Footer -->
+<footer class="row">
+  <div class="large-12 columns">
+    <hr/>
+  <div class="row">
+    <div class="large-6 columns">
+        <p>© Copyright 2015 -- Team JAP</p>
+    </div>
+  <div class="large-6 columns">
+  </div>
+</footer>

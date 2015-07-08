@@ -7,7 +7,8 @@ namespace :busapi do
     routes = HTTParty.get("http://api.metro.net/agencies/lametro/routes/")
     routes["items"].each do |r|
       #if the route id is not 704 and 733 and 734, then it will keep going and search for other routes
-      if r["id"] != "704" && r["id"] != "733" && r["id"] != "734"
+      if r["id"] != "704"
+        #  && r["id"] != "733" && r["id"] != "734"
           next
       end
       route = Route.find_or_create_by(api_id: r["id"]) do |row|
@@ -19,24 +20,30 @@ namespace :busapi do
 
       buses["items"].each do |b|
 
+        if b["run_id"]
+
+          if b["run_id"].split("_").last == "0"
 
           # Create the bus if not exists in database
-          bus = Bus.find_or_create_by(api_id: b["id"]) do |row|
-              row.name = b["id"]
-              row.route_id = route.id
-              row.latitude = b["latitude"]
-              row.longitude = b["longitude"]
-          end
+            bus = Bus.find_or_create_by(api_id: b["id"]) do |row|
+                row.name = b["id"]
+                row.route_id = route.id
+                row.latitude = b["latitude"]
+                row.longitude = b["longitude"]
+            end
 
           # Update the bus after finding or creating the bus
-          bus.update_attributes(
-              :name =>  b["id"],
-              :route_id =>  route.id,
-              :latitude =>  b["latitude"],
-              :longitude => b["longitude"]
-          )
-          #push the buses inside our busarray
-          busarray.push(bus.id)
+            bus.update_attributes(
+                :name =>  b["id"],
+                :route_id =>  route.id,
+                :latitude =>  b["latitude"],
+                :longitude => b["longitude"]
+            )
+            #push the buses inside our busarray
+            busarray.push(bus.id)
+          end
+
+        end
 
 
 
