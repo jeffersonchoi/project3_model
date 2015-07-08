@@ -1,4 +1,6 @@
 class StopsController < ApplicationController
+
+  #display all the stops and buses
   def index
 
     @stops = Stop.all
@@ -15,7 +17,7 @@ class StopsController < ApplicationController
 
   end
 
-
+  #show the stop
   def show
     @first_stop = Stop.find(params[:id])
     @first_stop_name = @first_stop.name

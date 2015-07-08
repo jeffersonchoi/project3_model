@@ -1,6 +1,10 @@
 class StaticPageController < ApplicationController
 
 	def about
-	end	
-end
+	end
 
+	def bus_routes
+		@stops = Stop.all
+	end
+
+end
