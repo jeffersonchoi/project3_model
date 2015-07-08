@@ -4,6 +4,10 @@ google.maps.event.addDomListener(window, 'page:load', initialize);
 
 var stopsPath704 = [];
 var busLocations = [];
+var testStops = [
+  new google.maps.LatLng(34.07316, -118.4012699),
+  new google.maps.LatLng(34.0849099, -118.38363)
+];
 // Initialize Google Map
 function initialize() {
 
@@ -38,7 +42,39 @@ function initialize() {
           fillOpacity: 1,
         },
       });
+
+      // Coloring route lines of different routes
+      var path704 = new google.maps.Polyline({
+        path: stopsPath704,
+        geodesic: true,
+        strokeColor: '#FF0000',
+        strokeOpacity: 1.0,
+        strokeWeight: 5
+      });
+
+      var infowindow = new google.maps.InfoWindow();
+
+      google.maps.event.addListener(marker, 'mouseover', function(marker, i) {
+          return function (){
+            var stopName = results[0].stops[i].name
+            var secondsTillArrival = results[0].stops[i].seconds
+            var direction = results[0].stops[i].direction
+            if (results[0].stops[i].direction == null){
+              var content = "<p><b>Stop Name:</b></p>" + '<p>'+stopName+'</p>' + "<p><b>Time till arrival(seconds):</b></p>" + '<p>'+secondsTillArrival+'</p>'
+            } else {
+              var content = "<p><b>Stop Name:</b></p>" + '<p>'+stopName+'</p>' + "<p><b>Time till arrival(seconds):</b></p>" + '<p>'+secondsTillArrival+'</p>' + "<p><b>Direction (next bus):</b></p>" + '<p>'+direction+'</p>'
+            }
+            infowindow.setContent(content);
+            infowindow.open(my_map, marker);
+          };
+      }(marker,i));
+
+      // google.maps.event.addListener(marker, 'mouseout', function(marker, i) {
+      //     infowindow.close(my_map, marker);
+      // }(marker, i));
+
       marker.setMap(my_map);
+
       bounds.extend(allStopPositions);
     }
 
@@ -51,21 +87,7 @@ function initialize() {
         icon: '/assets/bus_icon.png'
       });
       marker.setMap(my_map);
-
     }
-
-    calculateDistances(bus_position, stopsPath704)
-
-// Coloring route lines of different routes
-    var path704 = new google.maps.Polyline({
-      path: stopsPath704,
-      geodesic: true,
-      strokeColor: '#FF0000',
-      strokeOpacity: 1.0,
-      strokeWeight: 5
-    });
-
-
 
 // Fits bounds of the map according to LatLngbounds of our map as defined by coordinates of existing data
     my_map.fitBounds(bounds);
@@ -74,82 +96,3 @@ function initialize() {
   })
 
 }
-
-
-function calculateDistances(bus_location, bus_stops) {
-  var service = new google.maps.DirectionsService();
-
-  waypoints = []
-  bus_stops = bus_stops.splice(-8)
-  for(var i = 0; i < bus_stops.length; i++){
-    waypoints.push( {location: bus_stops[i]} )
-  }
-
-  var destination = bus_stops.pop()
-
- //console.log(bus_stops)
-
-  service.route(
-    {
-      origin: bus_location,
-      waypoints: waypoints,
-      destination: destination,
-      travelMode: google.maps.TravelMode.DRIVING,
-      unitSystem: google.maps.UnitSystem.METRIC,
-      avoidHighways: false,
-      avoidTolls: false
-    }, callback);
-    console.log("calculateDistances running")
-}
-
-function callback(response, status) {
-  if (status == google.maps.DistanceMatrixStatus.OK) {
-    console.log("callback running");
-    console.log(response)
-    var origin = response.originAddresses;
-    var destination = response.destinationAddresses;
-
-    var results = response.routes[0].legs[0];
-    var distance = results.distance.text;
-    var duration = results.duration.text;
-    document.getElementById('testDiv').innerHTML = duration;
-  } else {
-    console.log("something's wrong with calculateDistances")
-    console.log(status)
-  }
-}
-// HOW TO SPLIT A LONG ARRAY INTO A SMALLER ARRAY
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// Looping through 3 different routes via json reference
-    // // for (var i = 0; i < results.length; i++) {
-    //   if (results[i].route.api_id == 704) {
-    //     var stops704 = new google.maps.LatLng(results[i].stop.latitude, results[i].stop.longitude);
-    //     stopsPath704.push(stops704);
-    //   }
-    //   if (results[i].route.api_id == 733) {
-    //     var stops733 = new google.maps.LatLng(results[i].stop.latitude, results[i].stop.longitude);
-    //     stopsPath733.push(stops733);
-    //   }
-    //   if (results[i].route.api_id == 734) {
-    //     var stops734 = new google.maps.LatLng(results[i].stop.latitude, results[i].stop.longitude);
-    //     stopsPath734.push(stops734);
-    //   }
-    // };
-
-    // var path733 = new google.maps.Polyline({
-    //   path: stopsPath733,
-    //   geodesic: true,
-    //   strokeColor: '#0000FF',
-    //   strokeOpacity: 1.0,
-    //   strokeWeight: 2
-    // });
-    //
-    // var path734 = new google.maps.Polyline({
-    //   path: stopsPath734,
-    //   geodesic: true,
-    //   strokeColor: '#22FF00',
-    //   strokeOpacity: 1.0,
-    //   strokeWeight: 2
-    // });
-    //

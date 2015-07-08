@@ -13,118 +13,22 @@
          <hr/>
        </div>
      </div>
-     
+
      <h4>Route 704</h4>
 <!-- Route Table -->
 <table style="width:100%">
   <tr>
-    <strong><th>Stop_ID</th></strong>   
-    <th>Intersection</th> 
-    <th>Sequence</th> 
+    <strong><th>Stop_ID</th></strong>
+    <th>Intersection</th>
+    <th>Seconds Till Arrival of Next Bus</th>
   </tr>
 
-  <tr>
-    <td>29</td>    <td>2nd / Santa Monica</td>   <td>1</td>
-  </tr>
-   <tr>
-    <td>4096</td>    <td>Ocean / Santa Monica </td>   <td>2</td>
-  </tr>
-  <tr>
-    <td>14360</td>    <td>Santa Monica / 4th </td>   <td>3</td>
-  </tr>
-  <tr>
-    <td>6001</td>    <td>Santa Monica / Lincoln </td>   <td>4</td>
-  </tr>
-  <tr>
-    <td>5977</td>    <td>Santa Monica / 20th </td>   <td>5</td>
-  </tr>
-  <tr>
-    <td>5979</td>    <td>Santa Monica / 26th </td>   <td>6</td>
-  </tr>
-  <tr>
-    <td>6041</td>    <td>Santa Monica / Bundy </td>   <td>7</td>
-  </tr>
-  <tr>
-    <td>6039</td>    <td>Santa Monica / Barrington </td>   <td>8</td>
-  </tr>
-  <tr>
-    <td>14424</td>    <td>Santa Monica / Sepulveda </td>   <td>9</td>
-  </tr>
-  <tr>
-    <td>6058</td>    <td>Santa Monica / Westwood </td>   <td>10</td>
-  </tr>
-  <tr>
-    <td>6040</td>    <td>Santa Monica / Beverly Glen </td>   <td>11</td>
-  </tr>
-  <tr>
-    <td>5917</td>    <td>Santa Monica / Avenue Of The Stars </td>   <td>12</td>
-  </tr>
-  <tr>
-    <td>5977</td>    <td>Santa Monica / Wilshire </td>   <td>13</td>
-  </tr>
-  <tr>
-    <td>6008</td>    <td>Santa Monica / Canon</td>   <td>14</td>
-  </tr>
-  <tr>
-    <td>14378</td>    <td>Santa Monica / San Vicente </td>   <td>15</td>
-  </tr>
-  <tr>
-    <td>7946</td>    <td>Santa Monica / La Cienega </td>   <td>16</td>
-  </tr>
-  <tr>
-    <td>6031</td>    <td>Santa Monica / Sweetzer</td>   <td>17</td>
-  </tr>
-  <tr>
-    <td>6014</td>    <td>Santa Monica / Fairfax </td>   <td>18</td>
-  </tr>
-  <tr>
-    <td>6052</td>    <td>Santa Monica / Vista </td>   <td>19</td>
-  </tr>
-  <tr>
-    <td>6023</td>    <td>Santa Monica / La Brea </td>   <td>20</td>
-  </tr>
-  <tr>
-    <td>6019</td>    <td>Santa Monica / Highland </td>   <td>21</td>
-  </tr>
-  <tr>
-    <td>5386</td>    <td>Santa Monica / Vine </td>   <td>22</td>
-  </tr>
-  <tr>
-    <td>14436</td>    <td>Santa Monica / Western </td>   <td>23</td>
-  </tr>
-  <tr>
-    <td>5387</td>    <td>Santa Monica / Normandie </td>   <td>24</td>
-  </tr>
-  <tr>
-    <td>6033</td>    <td>Santa Monica / Vermont</td>   <td>25</td>
-  </tr>
-  <tr>
-    <td>1443</td>    <td>Santa Monica / Sanborn </td>   <td>26</td>
-  </tr>
-  <tr>
-    <td>17306</td>    <td>Sunset / Parkman </td>   <td>27</td>
-  </tr>
-  <tr>
-    <td>5400</td>    <td>Sunset / Alvarado </td>   <td>28</td>
-  </tr>
-  <tr>
-    <td>8011</td>    <td>Sunset / Echo Park </td>   <td>29</td>
-  </tr>
-  <tr>
-    <td>2421</td>    <td>Elysian Pk Dodger Stadium</td>   <td>30</td>
-  </tr>
-  <tr>
-    <td>8040</td>    <td>Sunset / Figueroa</td>   <td>31</td>
-  </tr>
-  <tr>
-    <td>668</td>    <td>Cesar E Chavez / Grand</td>   <td>32</td>
-  </tr>
-    <td>660</td>    <td>Cesar E Chavez / Spring</td>   <td>33</td>
-  </tr>
-    <td>668</td>    <td>Patsaouras Transit Plaza</td>   <td>34</td>
-  </tr>
-    <td>672</td>    <td>Center / Jackson Terminal  </td>   <td>35</td>
-  </tr>
+  <% @stops.each do |stop| %>
+    <tr>
+      <td><%= stop.id %></td><td><%= stop.name %></td><td><%= stop.seconds %></td>
+    </tr>
+  <% end %>
+
 </table>
 
 <!-- Footer -->
@@ -138,4 +42,3 @@
   <div class="large-6 columns">
   </div>
 </footer>
-
